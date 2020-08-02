@@ -8,7 +8,7 @@ var router = express.Router();
  * Router-1 
  * api/ping
 */
-router.get('/ping', (req, res) => {
+router.get('/api/ping', (req, res) => {
   let returnObj = { "success": true }
   return res.send(returnObj);
 })
@@ -41,7 +41,7 @@ const validateDirection = (directionArg) => { if (directionArg === "asc" || dire
  * */
 const tagsArgSplit = (tagsArg) => { return tagsArg.split(',') }
 
-const getHatwaysDataFromAPI = async (url) => {
+const getHatwaysDataFromAPI = async(url) => {
   let response = await fetch(url)
   let data = await response.json()
   return data;
@@ -108,7 +108,7 @@ const removeDuplicates = async (apiData) => {
   return result;
 };
 
-router.get('/posts', async (req, res) => {
+router.get('/api/posts', async (req, res) => {
 
   /** Check and return if some value for specified paramter was paased, Otherwise, return default */
   let sortByParam = (req.query.sortBy || 'id').toLowerCase();
@@ -137,3 +137,14 @@ router.get('/posts', async (req, res) => {
 })
 
 module.exports = router;
+
+
+
+/** 
+ * Concurrent Requests:
+ *  1. You are making requests to multiple APIs instead of one 
+*/
+
+
+
+
