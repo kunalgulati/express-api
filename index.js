@@ -10,7 +10,7 @@ const path = require("path");
  * Required Routes
  */
 var indexRouter  = require('./routes/index');
-var pingRouter  = require('./routes/ping');
+var apiRouter  = require('./routes/api');
 
 
  
@@ -30,7 +30,7 @@ app.set("view engine", "pug");
  * Routes Definitions
  */
 app.use('/', indexRouter);
-app.use('/', pingRouter)
+app.use('/', apiRouter)
 /**
  * Server Activation
  */
