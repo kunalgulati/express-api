@@ -16,8 +16,6 @@ router.get('/api/ping', (req, res) => {
  * Router-2 
  * api/posts
 */
-
-
 router.get('/api/posts', async (req, res) => {
 
   /** Check and return if some value for specified paramter was paased, Otherwise, return default */
@@ -26,9 +24,9 @@ router.get('/api/posts', async (req, res) => {
   let tagsParam = req.query.tags;
 
   /** Validate user-passed Parameters */
-  if (!helperPost.validateTags(tagsParam)) { return res.send({ "error": "Tags parameter is required" }) }
-  if (!helperPost.validateSortBy(sortByParam)) { return res.send({ "error": "sortBy parameter is invalid" }) }
-  if (!helperPost.validateDirection(directionParam)) { return res.send({ "direction": "direction parameter is invalid" }) }
+  if (!helperPost.validateTags(tagsParam)) { res.status(400); return res.send({ "error": "Tags parameter is required" }) }
+  if (!helperPost.validateSortBy(sortByParam)) { res.status(400); return res.send({ "error": "sortBy parameter is invalid" }) }
+  if (!helperPost.validateDirection(directionParam)) { res.status(400); return res.send({ "direction": "direction parameter is invalid" }) }
 
   /** Convert to lower case to ensure no client-side error && Split the tags into array */
   tagsParam = tagsParam.toLowerCase();
