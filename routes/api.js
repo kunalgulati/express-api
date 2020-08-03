@@ -9,6 +9,8 @@ const router = express.Router();
 */
 router.get('/api/ping', (req, res) => {
   const returnObj = { "success": true }
+  /** Allow being catched for 8 mins */ 
+  res.set('Cache-Control', 'public, max-age=480');
   return res.send(returnObj);
 })
 
@@ -40,7 +42,10 @@ router.get('/api/posts', async (req, res) => {
   const sortedData = await helperPost.sortData(directionParam, sortByParam, combineData);
   /** Create a JSON return objected with the fetchd data */
   const returnObj = { posts: sortedData };
-
+  
+  /** If everything was successfull */
+  // allow being cached for 8 mins 
+  res.set('Cache-Control', 'public, max-age=480');
   return res.send(returnObj);
 })
 
