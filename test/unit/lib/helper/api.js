@@ -1012,8 +1012,168 @@ describe('Post API Helper Function', function () {
         .to.have.deep.members(expectedValue)
         .to.deep.equal(expectedValue)
     });
-
   });
+
+  context("Test Removed Duplicates", function () {
+    it("Should return an array without duplicated when supplied with an array containing duplicates", async function () {
+      const validInput = [
+        {
+          "author": "Rylee Paul",
+          "authorId": 9,
+          "id": 1,
+          "likes": 960,
+          "popularity": 0.13,
+          "reads": 50361,
+          "tags": [
+            "tech",
+            "health"
+          ]
+        },
+        {
+          "author": "Trevon Rodriguez",
+          "authorId": 5,
+          "id": 8,
+          "likes": 735,
+          "popularity": 0.76,
+          "reads": 8504,
+          "tags": [
+            "culture",
+            "history"
+          ]
+        },
+        {
+          "author": "Zackery Turner",
+          "authorId": 12,
+          "id": 2,
+          "likes": 469,
+          "popularity": 0.68,
+          "reads": 90406,
+          "tags": [
+            "startups",
+            "tech",
+            "history"
+          ]
+        },
+        {
+          "author": "Trevon Rodriguez",
+          "authorId": 5,
+          "id": 8,
+          "likes": 735,
+          "popularity": 0.76,
+          "reads": 8504,
+          "tags": [
+            "culture",
+            "history"
+          ]
+        },
+        {
+          "author": "Elisha Friedman",
+          "authorId": 8,
+          "id": 4,
+          "likes": 728,
+          "popularity": 0.88,
+          "reads": 19645,
+          "tags": [
+            "science",
+            "design",
+            "tech"
+          ]
+        },
+        {
+          "author": "Zackery Turner",
+          "authorId": 12,
+          "id": 2,
+          "likes": 469,
+          "popularity": 0.68,
+          "reads": 90406,
+          "tags": [
+            "startups",
+            "tech",
+            "history"
+          ]
+        },
+        {
+          "author": "Trevon Rodriguez",
+          "authorId": 5,
+          "id": 8,
+          "likes": 735,
+          "popularity": 0.76,
+          "reads": 8504,
+          "tags": [
+            "culture",
+            "history"
+          ]
+        },
+      ]
+      const expectedValue = [
+        {
+          "author": "Rylee Paul",
+          "authorId": 9,
+          "id": 1,
+          "likes": 960,
+          "popularity": 0.13,
+          "reads": 50361,
+          "tags": [
+            "tech",
+            "health"
+          ]
+        },
+        {
+          "author": "Trevon Rodriguez",
+          "authorId": 5,
+          "id": 8,
+          "likes": 735,
+          "popularity": 0.76,
+          "reads": 8504,
+          "tags": [
+            "culture",
+            "history"
+          ]
+        },
+        {
+          "author": "Zackery Turner",
+          "authorId": 12,
+          "id": 2,
+          "likes": 469,
+          "popularity": 0.68,
+          "reads": 90406,
+          "tags": [
+            "startups",
+            "tech",
+            "history"
+          ]
+        },
+        {
+          "author": "Elisha Friedman",
+          "authorId": 8,
+          "id": 4,
+          "likes": 728,
+          "popularity": 0.88,
+          "reads": 19645,
+          "tags": [
+            "science",
+            "design",
+            "tech"
+          ]
+        },
+      ]
+
+      const actual = await ApiPosts.removeDuplicates(validInput);
+
+      expect(validInput)
+        .to.be.an('array')
+        .to.not.empty;
+      /** 
+       * Deep check if all members exists in sorted array 
+       * Deep compare the value of all members */
+      expect(actual)
+        .to.be.an('array')
+        .to.have.deep.members(expectedValue)
+        .to.deep.equal(expectedValue)
+    });
+  });
+
+  
 });
 
 
