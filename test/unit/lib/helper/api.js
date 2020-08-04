@@ -193,7 +193,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Trevon Rodriguez',
@@ -202,7 +202,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Trevon Rodriguez',
@@ -211,7 +211,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Elisha Friedman',
@@ -220,7 +220,7 @@ describe('Post API Helper Function', function () {
           likes: 728,
           popularity: 0.88,
           reads: 19645,
-          tags: [ 'science', 'design', 'tech' ]
+          tags: ['science', 'design', 'tech']
         },
         {
           author: 'Zackery Turner',
@@ -229,7 +229,7 @@ describe('Post API Helper Function', function () {
           likes: 469,
           popularity: 0.68,
           reads: 90406,
-          tags: [ 'startups', 'tech', 'history' ]
+          tags: ['startups', 'tech', 'history']
         },
         {
           author: 'Zackery Turner',
@@ -238,7 +238,7 @@ describe('Post API Helper Function', function () {
           likes: 469,
           popularity: 0.68,
           reads: 90406,
-          tags: [ 'startups', 'tech', 'history' ]
+          tags: ['startups', 'tech', 'history']
         },
         {
           author: 'Rylee Paul',
@@ -247,7 +247,7 @@ describe('Post API Helper Function', function () {
           likes: 960,
           popularity: 0.13,
           reads: 50361,
-          tags: [ 'tech', 'health' ]
+          tags: ['tech', 'health']
         }
       ]
 
@@ -265,7 +265,7 @@ describe('Post API Helper Function', function () {
         .to.deep.equal(expectedValue)
     });
 
-    
+
     /** Empty array */
     it("Should return empty array when input is empty", async function () {
       const validInput = [];
@@ -577,7 +577,7 @@ describe('Post API Helper Function', function () {
           ]
         },
       ]
-      const expectedValue = [        
+      const expectedValue = [
         {
           "author": "Trevon Rodriguez",
           "authorId": 5,
@@ -644,7 +644,7 @@ describe('Post API Helper Function', function () {
     });
 
     it("Should return sorted array when supplied with Sorted Array (by desc order) and expecting to sory it by ascending order", async function () {
-      const validInput = [        
+      const validInput = [
         {
           "author": "Trevon Rodriguez",
           "authorId": 5,
@@ -748,7 +748,7 @@ describe('Post API Helper Function', function () {
           ]
         },
       ]
-      
+
       const actual = await ApiPosts.sortData(directionAscInput, sortByIdInput, validInput);
 
       expect(validInput)
@@ -766,7 +766,7 @@ describe('Post API Helper Function', function () {
 
     it("Should return sorted array when supplied with an Array with same input throughout", async function () {
       /** No expected value because, even after sorting the array should remain the same */
-      const validInput = [        
+      const validInput = [
         {
           "author": "Trevon Rodriguez",
           "authorId": 5,
@@ -828,7 +828,7 @@ describe('Post API Helper Function', function () {
           ]
         },
       ]
-      
+
       const actual = await ApiPosts.sortData(directionAscInput, sortByIdInput, validInput);
 
       expect(validInput)
@@ -942,7 +942,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Trevon Rodriguez',
@@ -951,7 +951,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Trevon Rodriguez',
@@ -960,7 +960,7 @@ describe('Post API Helper Function', function () {
           likes: 735,
           popularity: 0.76,
           reads: 8504,
-          tags: [ 'culture', 'history' ]
+          tags: ['culture', 'history']
         },
         {
           author: 'Elisha Friedman',
@@ -969,7 +969,7 @@ describe('Post API Helper Function', function () {
           likes: 728,
           popularity: 0.88,
           reads: 19645,
-          tags: [ 'science', 'design', 'tech' ]
+          tags: ['science', 'design', 'tech']
         },
         {
           author: 'Zackery Turner',
@@ -978,7 +978,7 @@ describe('Post API Helper Function', function () {
           likes: 469,
           popularity: 0.68,
           reads: 90406,
-          tags: [ 'startups', 'tech', 'history' ]
+          tags: ['startups', 'tech', 'history']
         },
         {
           author: 'Zackery Turner',
@@ -987,7 +987,7 @@ describe('Post API Helper Function', function () {
           likes: 469,
           popularity: 0.68,
           reads: 90406,
-          tags: [ 'startups', 'tech', 'history' ]
+          tags: ['startups', 'tech', 'history']
         },
         {
           author: 'Rylee Paul',
@@ -996,7 +996,7 @@ describe('Post API Helper Function', function () {
           likes: 960,
           popularity: 0.13,
           reads: 50361,
-          tags: [ 'tech', 'health' ]
+          tags: ['tech', 'health']
         }
       ]
       const actual = await ApiPosts.sortData(directionDescInput, sortByIdInput, validInput);
@@ -1173,7 +1173,7 @@ describe('Post API Helper Function', function () {
     });
   });
 
-  
+
 });
 
 
