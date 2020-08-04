@@ -4,20 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "dev": "nodemon ./index.js",
-    "ui": "browser-sync start --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify"
+    "ui": "browser-sync start --proxy=localhost:8000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify",
+    "eslint": "eslint"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.26.12",
+    "chai": "^4.2.0",
+    "eslint": "^7.6.0",
+    "mocha": "^8.1.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "async": "^3.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "redis": "^3.0.2",
+    "util": "^0.12.3"
   }
 }

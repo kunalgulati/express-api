@@ -9,10 +9,8 @@ const path = require("path");
 /**
  * Required Routes
  */
-var indexRouter  = require('./routes/index');
-var apiRouter  = require('./routes/api');
-
-
+const indexRouter  = require('./routes/index');
+const apiRouter  = require('./routes/api');
  
 /**
  * App Variables
