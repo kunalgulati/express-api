@@ -19,7 +19,6 @@ router.get('/api/ping', (req, res) => {
  * api/posts
 */
 router.get('/api/posts', async (req, res) => {
-
   /** Check and return if some value for specified paramter was paased, Otherwise, return default */
   const sortByParam = (req.query.sortBy || 'id').toLowerCase();
   const directionParam = (req.query.direction || 'asc').toLowerCase();
@@ -36,6 +35,7 @@ router.get('/api/posts', async (req, res) => {
 
   /* Fetch all data */
   const result = await helperPost.getAllTagsData(tagsParam);
+  if(result === null) { res.status(400); return res.send({ "error": "There was a error in fetching the data from server. Please contact our support team" }) }
   /** Remove duplicates / Combine Fetched Data */
   const combineData = await helperPost.removeDuplicates(result);
   /** Sort the combined data using "SortedBy" and "Direction" argument passed in the Query String*/
