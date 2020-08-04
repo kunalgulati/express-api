@@ -27,7 +27,7 @@ router.get('/api/posts', async (req, res) => {
   /** Validate user-passed Parameters */
   if (!helperPost.validateTags(tagsParam)) { res.status(400); return res.send({ "error": "Tags parameter is required" }) }
   if (!helperPost.validateSortBy(sortByParam)) { res.status(400); return res.send({ "error": "sortBy parameter is invalid" }) }
-  if (!helperPost.validateDirection(directionParam)) { res.status(400); return res.send({ "direction": "direction parameter is invalid" }) }
+  if (!helperPost.validateDirection(directionParam)) { res.status(400); return res.send({ "error": "direction parameter is invalid" }) }
 
   /** Convert to lower case to ensure no client-side error && Split the tags into array */
   tagsParam = tagsParam.toLowerCase();
