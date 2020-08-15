@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StatsGrid(props) {
   const classes = useStyles();
-  console.log(props)
-
-  console.log(typeof(props.cachingArgs) , " s s ", props.concurrentFetchingArgs)
 
   if(props.concurrentFetchingArgs === null || props.cachingArgs ===  null){
     return <></>;

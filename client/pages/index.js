@@ -22,6 +22,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import NavBar from '../components/NavBar.js'
 import StatsBar from '../components/StatsBar.js'
 import DisplayPosts from '../components/DisplayPosts.js'
+import ApiUrl from '../components/ApiUrl.js'
 
 /* ************************************************* Demo Bar ************************************************* */
 const useStylesDemoBar = makeStyles((theme) => ({
@@ -68,6 +69,7 @@ export default function Home() {
   const [cachingData, setCachingData] = React.useState(null);
   const [concurrencyData, setConcurrencyData] = React.useState(null);
   const [fetchData, setFetchData] = React.useState(null);
+  const [fetchUrl, setFetchUrl] = React.useState(null);
 
 
   /** Check for Success before adding data to caching */
@@ -113,6 +115,7 @@ export default function Home() {
       setFetchData(null);
       setConcurrencyData(null);
       setCachingData(null);
+      setFetchUrl(null);
 
       /** Set the tags */
       for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
@@ -125,6 +128,7 @@ export default function Home() {
       setCachingData('cachingData')
       setConcurrencyData("concurrencyDat")
       setFetchData(data)
+      setFetchUrl(url);
     }
 
     return (
@@ -234,6 +238,9 @@ export default function Home() {
         className={classes.demoBarRoot}>
         <DemoBar />
       </Grid>
+      <ApiUrl 
+        url={fetchUrl}
+        />
       <StatsBar
         concurrentFetchingArgs={cachingData}
         cachingArgs={concurrencyData}
@@ -241,8 +248,6 @@ export default function Home() {
       <DisplayPosts 
         data={fetchData}
       />
-      
-
     </>
   )
 }

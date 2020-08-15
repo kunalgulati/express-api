@@ -69,7 +69,6 @@ export default function DisplayPostsGrid(props) {
                     ))
                   }
                 </Grid>
-
               </Paper>
             </Grid>
           ))
