@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    // color: theme.palette.text.secondary,
   },
   hashtagPaper: {
     padding: theme.spacing(0.5),
@@ -48,11 +48,11 @@ export default function DisplayPostsGrid(props) {
           postsData.map((post) => (
             <Grid key={"post-" + post.id} item xs={6} className={classes.gridItem}>
               <Paper className={classes.paper}>
-                <Typography>Author Id: {post.authorId}</Typography>
-                <Typography>Post Id: {post.id}</Typography>
-                <Typography>Likes: {post.likes}</Typography>
-                <Typography>Popularity Score: {post.popularity}</Typography>
-                <Typography>Total Reads: {post.reads}</Typography>
+                <Typography ><b>Author Id: </b> {post.authorId} </Typography>
+                <Typography><b>Post Id:</b> {post.id}</Typography>
+                <Typography><b>Likes:</b> {post.likes}</Typography>
+                <Typography><b>Popularity Score:</b> {post.popularity}</Typography>
+                <Typography><b>Total Reads:</b> {post.reads}</Typography>
 
                 <Grid container
                   alignItems="center"

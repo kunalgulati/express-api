@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import Head from 'next/head'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,13 +15,14 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+import Divider from '@material-ui/core/Divider';
+
 
 
 /* ************************************************* Components ************************************************* */
 import NavBar from '../components/NavBar.js'
 import StatsBar from '../components/StatsBar.js'
 import DisplayPosts from '../components/DisplayPosts.js'
-import ApiUrl from '../components/ApiUrl.js'
 
 /* ************************************************* Demo Bar ************************************************* */
 const useStylesDemoBar = makeStyles((theme) => ({
@@ -71,10 +71,14 @@ export default function Home() {
   const [fetchData, setFetchData] = React.useState(null);
   const [fetchUrl, setFetchUrl] = React.useState(null);
 
-
+  const calculateTotalTime = (ajaxTime) =>{
+    const totalTime = new Date().getTime()-ajaxTime;
+    console.log(totalTime)
+  };
   /** Check for Success before adding data to caching */
-  const fetcher = url => fetch(url)
+  const fetcher = (url, ajaxTime) => fetch(url)
     .then(r => r.json())
+    .then(calculateTotalTime(ajaxTime));
 
   /** Demo Bar component */
   const DemoBar = () => {
@@ -121,8 +125,10 @@ export default function Home() {
       for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
       if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
 
+
       const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
-      const data = await fetcher(url)
+      var ajaxTime= new Date().getTime();
+      const data = await fetcher(url, ajaxTime)
       
       /** Set Fecthed Data */
       setCachingData('cachingData')
@@ -238,13 +244,11 @@ export default function Home() {
         className={classes.demoBarRoot}>
         <DemoBar />
       </Grid>
-      <ApiUrl 
-        url={fetchUrl}
-        />
       <StatsBar
         concurrentFetchingArgs={cachingData}
-        cachingArgs={concurrencyData}
+        url={fetchUrl}
       />
+      <Divider/>
       <DisplayPosts 
         data={fetchData}
       />
