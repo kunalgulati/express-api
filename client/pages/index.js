@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
 /** Custom Modules */
 export default function Home() {
   const classes = useStyles();
-  const [cachingData, setCachingData] = React.useState(null);
   const [concurrencyData, setConcurrencyData] = React.useState(null);
   const [fetchData, setFetchData] = React.useState(null);
   const [fetchUrl, setFetchUrl] = React.useState(null);
@@ -86,6 +85,7 @@ export default function Home() {
     const [hashtags, setHashtags] = React.useState('');
     const [sortBy, setSortBy] = React.useState('likes');
     const [direction, setDirection] = React.useState('asc');
+    const [concurrentFetchingData, setConcurrentFetching] = React.useState('true');
     /** Checkbox */
     const [hashtagsState, setHashtagsState] = React.useState({
       tech: false,
@@ -112,13 +112,15 @@ export default function Home() {
     const handleDirectionChange = (event) => {
       setDirection(event.target.value);
     };
+    const handleConcurrentFetchingChange = (event) =>{
+      setConcurrentFetching(event.target.value);
+    }
 
     const handleSearchClick = async () => {
       const tagsArray = [];
       let tagsParam = '';
       setFetchData(null);
       setConcurrencyData(null);
-      setCachingData(null);
       setFetchUrl(null);
 
       /** Set the tags */
@@ -126,12 +128,11 @@ export default function Home() {
       if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
 
 
-      const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
+      const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}&concurrentProcess=${concurrentFetchingData}`
       var ajaxTime= new Date().getTime();
       const data = await fetcher(url, ajaxTime)
       
       /** Set Fecthed Data */
-      setCachingData('cachingData')
       setConcurrencyData("concurrencyDat")
       setFetchData(data)
       setFetchUrl(url);
@@ -216,7 +217,7 @@ export default function Home() {
             <MenuItem value={"reads"}>Reads</MenuItem>
           </Select>
         </FormControl>
-        {/* SortBy Input */}
+        {/* Direction Input */}
         <FormControl variant="filled" className={classes.directionFormControl}>
           <InputLabel id="demo-simple-select-filled-label">Direction</InputLabel>
           <Select
@@ -229,6 +230,20 @@ export default function Home() {
             <MenuItem value={"desc"}>Descending</MenuItem>
           </Select>
         </FormControl>
+        {/* Concurrent Fetching  */}
+        <FormControl variant="filled" className={classes.directionFormControl}>
+          <InputLabel id="demo-simple-select-filled-label">Concurrently Fetch Data</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={concurrentFetchingData}
+            onChange={handleConcurrentFetchingChange}
+          >
+            <MenuItem value={"true"}>True</MenuItem>
+            <MenuItem value={"false"}>False</MenuItem>
+          </Select>
+        </FormControl>
+
         <Button variant="contained" className={classes.searchButton} onClick={handleSearchClick}>
           <Typography>Search</Typography></Button>
       </>
@@ -245,7 +260,7 @@ export default function Home() {
         <DemoBar />
       </Grid>
       <StatsBar
-        concurrentFetchingArgs={cachingData}
+        concurrentFetchingArgs={"cachingData"}
         url={fetchUrl}
       />
       <Divider/>
