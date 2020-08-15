@@ -1,12 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/router'
-
-
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
+/** Icons */
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +56,12 @@ export default function ButtonAppBar() {
           <Button color="inherit" onClick={handleAboutClick}>
             <Typography variant="h6" className={classes.title}>Description</Typography>
           </Button>
+          <IconButton  target="_blank" href="https://github.com/kunalgulati/express-api" > 
+            <GitHubIcon /> 
+          </IconButton>
+          <IconButton  target="_blank" href="https://www.linkedin.com/in/kunal-gulati-a02b1b5b/" > 
+            <LinkedInIcon /> 
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>

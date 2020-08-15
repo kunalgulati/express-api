@@ -127,7 +127,6 @@ export default function Home() {
       for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
       if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
 
-
       const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}&concurrentProcess=${concurrentFetchingData}`
       var ajaxTime= new Date().getTime();
       const data = await fetcher(url, ajaxTime)
