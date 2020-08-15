@@ -24,8 +24,7 @@ const checkStatus = (res) => {
 }
 
 /** Get all the desired tags from either the Cache or HTTP server (datasource) */
-const getAllTagsData = async (tagsArg) => {
-  // const urlParam = `https://hatchways.io/api/assessment/blog/posts?tag=`;
+const getAllTagsDataConcurrently = async (tagsArg) => {
   const urlParam = `${process.env.DATA_URL}/db?tag=`;
   let result = [];
   let error = false;
@@ -65,6 +64,25 @@ const getAllTagsData = async (tagsArg) => {
   await getData(urlLink);
 
   if (!error) { return result } else { return null }
+};
+
+/** Get all the desired tags from either the Cache or HTTP server (datasource) */
+const getAllTagsDataNotConcurrently = async (tagsArg) => {
+  const urlParam = `${process.env.DATA_URL}/db?tag=`;
+  let result = [];
+
+  /** Using Async library Es7 mapLimit function to make parallel data fetching requests to hatchways api */
+  const getData = async (url) => {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data;
+  };
+  /* Get Data for all listed the tags */
+  for (const eachTag of tagsArg) {
+    const data = await getData(urlParam + eachTag);
+    result = result.concat(data.posts)
+  }
+  return result;  
 };
 
 /**  
@@ -132,7 +150,8 @@ module.exports = {
   validateSortBy,
   validateDirection,
   tagsArgSplit,
-  getAllTagsData,
   sortData,
   removeDuplicates,
+  getAllTagsDataConcurrently,
+  getAllTagsDataNotConcurrently,
 }

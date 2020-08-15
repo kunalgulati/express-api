@@ -22,6 +22,8 @@ router.get('/api/posts', async (req, res) => {
   /** Check and return if some value for specified paramter was paased, Otherwise, return default */
   const sortByParam = (req.query.sortBy || 'id').toLowerCase();
   const directionParam = (req.query.direction || 'asc').toLowerCase();
+  const concurrentProcessParam = (req.query.concurrentProcess || "true");
+  console.log(concurrentProcessParam)
   let tagsParam = req.query.tags;
 
   /** Validate user-passed Parameters */
@@ -34,7 +36,11 @@ router.get('/api/posts', async (req, res) => {
   tagsParam = helperPost.tagsArgSplit(tagsParam);
 
   /* Fetch all data */
-  const result = await helperPost.getAllTagsData(tagsParam);
+  let result = [];
+  if(concurrentProcessParam == "true"){ result = await helperPost.getAllTagsDataConcurrently(tagsParam)}
+  else {result = await helperPost.getAllTagsDataNotConcurrently(tagsParam);}
+  
+
   if(result === null) { res.status(400); return res.send({ "error": "There was a error in fetching the data from server. Please contact our support team" }) }
   /** Remove duplicates / Combine Fetched Data */
   const combineData = await helperPost.removeDuplicates(result);
