@@ -86,7 +86,7 @@ export default function CustomizedSelects() {
   /** Checkbox */
   const [hashtagsState, setHashtagsState] = React.useState({
     tech: false,
-    startup: false,
+    startups: false,
     science: false,
     health: false,
     history: false,
@@ -97,7 +97,7 @@ export default function CustomizedSelects() {
   });
   /** Fetching */
 
-  const { tech, startup, science, health, history, design, culture, politics } = hashtagsState;
+  const { tech, startups, science, health, history, design, culture, politics } = hashtagsState;
 
   const handleHashtagsChange = (event) => {
     // if(hashtags == ''){ console.log("wne"); setHashtags(event.target.name)} else{ setHashtags( `${hashtags},${event.target.name}` )  }
@@ -110,7 +110,7 @@ export default function CustomizedSelects() {
     setDirection(event.target.value);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     const tagsArray = [];
     let tagsParam = '';
 
@@ -120,10 +120,10 @@ export default function CustomizedSelects() {
     
     const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
     // const { data, error } = useSWR(url, fetch)
-    const data = fetcher(url)
+    const data = await fetcher(url)
     console.log(data);
 
-    // console.log(url);
+    console.log(url);
   }
 
   return (
@@ -143,10 +143,10 @@ export default function CustomizedSelects() {
                 label="Tech"
               />
             </MenuItem>
-            <MenuItem value={"startup"}>
+            <MenuItem value={"startups"}>
               <FormControlLabel
-                control={<Checkbox checked={startup} onChange={handleHashtagsChange} name="startup" />}
-                label="Start-Up"
+                control={<Checkbox checked={startups} onChange={handleHashtagsChange} name="startups" />}
+                label="Start-Ups"
               />
             </MenuItem>
             <MenuItem value={"science"}>
