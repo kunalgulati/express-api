@@ -91,10 +91,9 @@ export default function CustomizedSelects() {
 
   const { tech, startup, science, health, history, design, culture, politics } = hashtagsState;
 
-  const handleHashtagsChange = (event) => {    
+  const handleHashtagsChange = (event) => {
     // if(hashtags == ''){ console.log("wne"); setHashtags(event.target.name)} else{ setHashtags( `${hashtags},${event.target.name}` )  }
     setHashtagsState({ ...hashtagsState, [event.target.name]: event.target.checked });
-    console.log(hashtagsState);
   };
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
@@ -102,6 +101,22 @@ export default function CustomizedSelects() {
   const handleDirectionChange = (event) => {
     setDirection(event.target.value);
   };
+
+  const handleSearchClick = () => {
+    const tagsArray = [];
+    let tagsParam = '';
+
+    /** Set the tags */
+    for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
+    if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
+
+    const url = `http://hatchways.io/api/assessment/solution/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
+    console.log(url);
+
+    fetch(url)
+      .then(response => console.log(response.json()))
+      // .then(data => this.setState({ hits: data.hits }));
+  }
 
   return (
     <>
@@ -195,7 +210,7 @@ export default function CustomizedSelects() {
           <MenuItem value={"desc"}>Descending</MenuItem>
         </Select>
       </FormControl>
-      <Button variant="contained" className={classes.searchButton}>
+      <Button variant="contained" className={classes.searchButton} onClick={handleSearchClick}>
         <Typography>Search</Typography></Button>
 
     </>
