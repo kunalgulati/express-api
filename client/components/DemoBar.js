@@ -7,6 +7,10 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import useSWR from 'swr'
+import fetch from 'unfetch'
+
+
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -71,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+const fetcher = url => fetch(url).then(r => r.json())
+
 export default function CustomizedSelects() {
   const classes = useStyles();
   const [hashtags, setHashtags] = React.useState('');
@@ -79,7 +86,7 @@ export default function CustomizedSelects() {
   /** Checkbox */
   const [hashtagsState, setHashtagsState] = React.useState({
     tech: false,
-    startup: false,
+    startups: false,
     science: false,
     health: false,
     history: false,
@@ -88,8 +95,9 @@ export default function CustomizedSelects() {
     politics: false,
 
   });
+  /** Fetching */
 
-  const { tech, startup, science, health, history, design, culture, politics } = hashtagsState;
+  const { tech, startups, science, health, history, design, culture, politics } = hashtagsState;
 
   const handleHashtagsChange = (event) => {
     // if(hashtags == ''){ console.log("wne"); setHashtags(event.target.name)} else{ setHashtags( `${hashtags},${event.target.name}` )  }
@@ -102,20 +110,20 @@ export default function CustomizedSelects() {
     setDirection(event.target.value);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     const tagsArray = [];
     let tagsParam = '';
 
     /** Set the tags */
     for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
     if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
+    
+    const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
+    // const { data, error } = useSWR(url, fetch)
+    const data = await fetcher(url)
+    console.log(data);
 
-    const url = `http://hatchways.io/api/assessment/solution/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}`
     console.log(url);
-
-    fetch(url)
-      .then(response => console.log(response.json()))
-      // .then(data => this.setState({ hits: data.hits }));
   }
 
   return (
@@ -135,10 +143,10 @@ export default function CustomizedSelects() {
                 label="Tech"
               />
             </MenuItem>
-            <MenuItem value={"startup"}>
+            <MenuItem value={"startups"}>
               <FormControlLabel
-                control={<Checkbox checked={startup} onChange={handleHashtagsChange} name="startup" />}
-                label="Start-Up"
+                control={<Checkbox checked={startups} onChange={handleHashtagsChange} name="startups" />}
+                label="Start-Ups"
               />
             </MenuItem>
             <MenuItem value={"science"}>

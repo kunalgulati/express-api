@@ -5,6 +5,7 @@
  */
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 
 /**
  * Required Routes
@@ -18,6 +19,7 @@ const dbRouter = require('./routes/db');
  */
 const app = express();
 const port = process.env.PORT || "8000";
+app.use(cors())
 
 /**
  *  App Configuration
