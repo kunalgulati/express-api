@@ -17,6 +17,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 
+import TableTemplate from '../components/TableTemplate';
+
 
 
 /* ************************************************* Components ************************************************* */
@@ -264,9 +266,12 @@ export default function Home() {
         url={fetchUrl}
       />
       <Divider/>
-      <DisplayPosts 
+      <TableTemplate
         data={fetchData}
-      />
+/>
+      {/* <DisplayPosts  */}
+        {/* data={fetchData} */}
+      {/* /> */}
     </>
   )
 }
