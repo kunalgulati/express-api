@@ -32,7 +32,7 @@ const getAllTagsDataConcurrently = async (tagsArg) => {
       return cacheData;
     }
     else {
-      const data = dbHelper.getTag(eachTag);
+      const data = await dbHelper.getTag(eachTag);
       /** Check status of the fetch data */
       if (data === null || data === undefined) { error = true; return null }
 

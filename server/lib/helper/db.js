@@ -65,37 +65,6 @@ const getTag = async (tagArg) => {
   return returnObj
 }
 
-
-/** Get Data from the MongoDB */
-// router.get('/db', async (req, res) => { 
-//   const tagParam = req.query.tag || '';
- 
-//   const model = {
-//     author: null,
-//     authorId: null,
-//     id: null,
-//     likes: null,
-//     popularity: null,
-//     reads: null,
-//     tags: null
-//  };
- 
-//   /** Check if send tag argument is one of the Valid Tag Name */
-//   if (!validateTag(tagParam)) { res.status(400); return res.send(errorTagName)}
-
-//   const result = await getTagData(tagParam);
-//   let returnObj = [];
-//   for (const each of result){
-//     returnObj.push(_.pick(each, _.keys(model)));
-//   }
-//   returnObj = {posts: [].concat(returnObj)}
-
-//   /** Allow being catched for 8 mins */ 
-//   // res.set('Cache-Control', 'public, max-age=480');
-//   return res.send(returnObj);
-// })
-
-
 module.exports = {
   getTag,
 };
