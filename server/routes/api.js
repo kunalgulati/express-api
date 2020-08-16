@@ -23,7 +23,6 @@ router.get('/api/posts', async (req, res) => {
   const sortByParam = (req.query.sortBy || 'id').toLowerCase();
   const directionParam = (req.query.direction || 'asc').toLowerCase();
   const concurrentProcessParam = (req.query.concurrentProcess || "true");
-  console.log(concurrentProcessParam)
   let tagsParam = req.query.tags;
 
   /** Validate user-passed Parameters */

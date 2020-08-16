@@ -12,7 +12,7 @@ const cors = require("cors");
  */
 const indexRouter  = require('./routes/index');
 const apiRouter  = require('./routes/api');
-const dbRouter = require('./routes/db');
+// const dbRouter = require('./routes/db');
  
 /**
  * App Variables
@@ -32,7 +32,7 @@ app.set("view engine", "pug");
  */
 app.use('/', indexRouter);
 app.use('/', apiRouter)
-app.use('/', dbRouter);
+// app.use('/', dbRouter);
 /**
  * Server Activation
  */
