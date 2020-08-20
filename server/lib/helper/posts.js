@@ -20,7 +20,7 @@ const getAllTagsDataConcurrently = async (tagsArg) => {
   let error = false;
 
   /** Using Async library Es7 mapLimit function to make parallel data fetching requests to hatchways api */
-  const getData = () => async.mapLimit(tagsArg, 100, async function (eachTag) {
+  const getData = () => async.mapLimit(tagsArg, 20, async function (eachTag) {
 
     /** Check if the desired Tag data already exists in the Redis Cache DB */
     let cacheData = await redisCacheHelper.getValue(eachTag);

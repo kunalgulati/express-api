@@ -84,7 +84,7 @@ export default function Home() {
   /** Demo Bar component */
   const DemoBar = () => {
     const classes = useStylesDemoBar();
-    const [hashtags, setHashtags] = React.useState('');
+    const [hashtags, setHashtags] = React.useState('tech');
     const [sortBy, setSortBy] = React.useState('likes');
     const [direction, setDirection] = React.useState('asc');
     const [concurrentFetchingData, setConcurrentFetching] = React.useState('true');
