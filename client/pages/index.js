@@ -90,7 +90,7 @@ export default function Home() {
     const [concurrentFetchingData, setConcurrentFetching] = React.useState('true');
     /** Checkbox */
     const [hashtagsState, setHashtagsState] = React.useState({
-      tech: false,
+      tech: true,
       startups: false,
       science: false,
       health: false,
