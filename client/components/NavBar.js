@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   rootBar :{
-    backgroundColor: "#FCA8B2",
-    color: "#ffffff",
+    backgroundColor: "transparent",
+    color: "#0336FF",
     alignItems: 'center',
 
   },
@@ -27,38 +27,31 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     paddingLeft: theme.spacing(2),
-    color: '#ffffff'
+    color: 'primary',
+    textAlign: 'center',
+    padding: theme.spacing(2)
   },
   titleLinkedin:{
     flexGrow: 1,
     textTransform: 'capitalize',
     paddingLeft: theme.spacing(2),
     color: '#0e76a8',
+    padding: theme.spacing(2)
   },
   titleGit:{
     flexGrow: 1,
     textTransform: 'capitalize',
     paddingLeft: theme.spacing(2),
     color: '#000000',
+    padding: theme.spacing(2),
   }
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
   const router = useRouter();
-
-  
-  const handleAboutClick = (e) => {
-    e.preventDefault()
-    router.push('./about')
-  };
-
-  const handleProjectsClick = (e) => {
-    e.preventDefault()
-    router.push('./projects')
-  };
 
   const handleHomeClick = (e)=>{
     e.preventDefault();
@@ -69,13 +62,13 @@ export default function ButtonAppBar() {
     <React.Fragment>
 
     <div className={classes.root}>
-      <AppBar position="static" className={classes.rootBar}>
+      <AppBar position="static" className={classes.rootBar} elevation={0}>
         <Toolbar>
           <Button color="inherit" onClick={handleHomeClick}>
-            <Typography variant="h4" className={classes.title}>{"Demo"}</Typography>
+            <Typography variant="h4" component="h4" className={classes.title}><b>{"Demo"}</b></Typography>
           </Button>
           <Button color="inherit" target="_blank" href="https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b">
-            <Typography variant="h4" className={classes.title}>{"Description"}</Typography>
+            <Typography variant="h4" component="h4" className={classes.title}> <b>{"Description"}</b></Typography>
           </Button>
           <IconButton  target="_blank" href="https://github.com/kunalgulati/express-api" className={classes.titleGit}> 
             <GitHubIcon /> 

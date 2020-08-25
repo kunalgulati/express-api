@@ -45,7 +45,7 @@ const useStylesDemoBar = makeStyles((theme) => ({
   },
   searchButton: {
     minWidth: '15%',
-    backgroundColor: '#29BA80',
+    backgroundColor: theme.palette.secondary.main,
     color: '#ffffff'
   }
 }));

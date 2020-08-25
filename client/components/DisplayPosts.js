@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: 'white',
     marginLeft: "5px",
-    backgroundColor: '#29BA80'
+    backgroundColor: 'secondary'
   }
 }));
 
@@ -40,7 +40,7 @@ export default function DisplayPostsGrid(props) {
   return (
     <>
       <Grid container
-        alignItems="center"
+        // alignItems="center"
         justify="center"
         className={classes.root}
       >

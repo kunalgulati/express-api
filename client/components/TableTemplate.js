@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: 'white',
     marginLeft: "5px",
-    backgroundColor: '#29BA80'
+    backgroundColor: theme.palette.secondary.main
   }
 }));
 

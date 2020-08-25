@@ -6,16 +6,17 @@ import { red } from '@material-ui/core/colors';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#fffff',
+      main: '#FFDE03',
     },
     secondary: {
-      main: '#f5eee9',
+      main: '#FF0266',
     },
     error: {
       main: red.A400,
     },
     background: {
-      default: '#FCA8B2',
+      // default: '#FCA8B2',
+      default: '#FFDE03',
     },
     color: {
       default: '#ffffff',
@@ -25,7 +26,17 @@ const theme = createMuiTheme({
     },
     button:{
       default: '#29BA80',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#1c1f1e',
     }
+  },
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      'sans-serif',
+    ].join(','),
   },
 });
 

@@ -18,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'left',
-    // color: theme.palette.text.secondary,
   },
+  linkClass: {
+    color: theme.palette.text.secondary,
+  }
 }));
 
 export default function StatsGrid(props) {
@@ -40,14 +42,14 @@ export default function StatsGrid(props) {
           <Paper className={classes.paper}>
             <Typography><b>Fetching Time </b></Typography>
             <Typography>Fetching Mode: {"Concurrent"}</Typography>
-            <Typography>Load Time: {"12ms"}</Typography>
+            {/* <Typography>Load Time: {"12ms"}</Typography> */}
           </Paper>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <Paper className={classes.paper}>
             <Typography><b>API Link: </b> </Typography>
             <Typography>
-              <Link href={props.url}>{props.url}</Link>
+              <Link href={props.url} className={classes.linkClass}>{props.url}</Link>
             </Typography>
           </Paper>
         </Grid>
