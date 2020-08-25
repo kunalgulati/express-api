@@ -74,7 +74,7 @@ export default function ButtonAppBar() {
           <Button color="inherit" onClick={handleHomeClick}>
             <Typography variant="h4" className={classes.title}>{"Demo"}</Typography>
           </Button>
-          <Button color="inherit" onClick={handleAboutClick}>
+          <Button color="inherit" target="_blank" href="https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b">
             <Typography variant="h4" className={classes.title}>{"Description"}</Typography>
           </Button>
           <IconButton  target="_blank" href="https://github.com/kunalgulati/express-api" className={classes.titleGit}> 
