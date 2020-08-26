@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'left',
+    // height: '100%'
   },
   linkClass: {
     color: theme.palette.text.secondary,
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function StatsGrid(props) {
   const classes = useStyles();
 
-  if(props.concurrentFetchingArgs === null || props.url ===  null){
+  if(props.concurrentArgs === null || props.url ===  null){
     return <></>;
   }
 
@@ -40,9 +41,9 @@ export default function StatsGrid(props) {
       >
         <Grid item xs={6} className={classes.gridItem}>
           <Paper className={classes.paper}>
-            <Typography><b>Fetching Time </b></Typography>
-            <Typography>Fetching Mode: {"Concurrent"}</Typography>
-            {/* <Typography>Load Time: {"12ms"}</Typography> */}
+            <Typography><b>Fetching Mode: </b>{props.concurrentArgs}</Typography>
+            <Typography><b>Fetching Time: </b>{props.responseTime} Milliseconds</Typography>
+            <br />
           </Paper>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>

@@ -20,6 +20,9 @@ import Divider from '@material-ui/core/Divider';
 import TableTemplate from '../components/TableTemplate';
 
 
+// import { PerformanceObserver, performance } from 'perf_hooks';
+
+
 
 /* ************************************************* Components ************************************************* */
 import NavBar from '../components/NavBar.js'
@@ -64,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
+let runTimeArgs = '';
+let concurrencyFetchArg = 'Concurrent';
 /** Custom Modules */
 export default function Home() {
   const classes = useStyles();
@@ -72,14 +76,14 @@ export default function Home() {
   const [fetchData, setFetchData] = React.useState(null);
   const [fetchUrl, setFetchUrl] = React.useState(null);
 
-  const calculateTotalTime = (ajaxTime) =>{
-    const totalTime = new Date().getTime()-ajaxTime;
-    console.log(totalTime)
-  };
   /** Check for Success before adding data to caching */
-  const fetcher = (url, ajaxTime) => fetch(url)
-    .then(r => r.json())
-    .then(calculateTotalTime(ajaxTime));
+  const fetcher = (urlArgs, startTime) => fetch(urlArgs).then(r => {
+      console.log('jsjsjs : ', new Date() - startTime);
+      runTimeArgs = new Date() - startTime;
+      return r.json()
+    })
+    // .then(data => console.log(data))
+    // .then()
 
   /** Demo Bar component */
   const DemoBar = () => {
@@ -125,14 +129,16 @@ export default function Home() {
       setConcurrencyData(null);
       setFetchUrl(null);
 
+       if(concurrentFetchingData =='true') {concurrencyFetchArg='Concurrent Fetching Used'} 
+       else {concurrencyFetchArg='Non-Concurrent Fetching Used'};
+
       /** Set the tags */
       for (const key in hashtagsState) { if (hashtagsState[key] == true) { tagsArray.push(key) } }
       if (tagsArray.length != 0) { tagsParam = tagsArray.toString() }
 
-      const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}&concurrentProcess=${concurrentFetchingData}`
-      // const url = `http://localhost:4000/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}&concurrentProcess=${concurrentFetchingData}`
-      var ajaxTime= new Date().getTime();
-      const data = await fetcher(url, ajaxTime)
+      const url = `https://murmuring-garden-33963.herokuapp.com/api/posts?tags=${tagsParam}&sortBy=${sortBy}&direction=${direction}&concurrentProcess=${concurrentFetchingData}`;
+      const start = new Date();
+      const data = await fetcher(url, start)
       
       /** Set Fecthed Data */
       setConcurrencyData("concurrencyDat")
@@ -262,7 +268,8 @@ export default function Home() {
         <DemoBar />
       </Grid>
       <StatsBar
-        concurrentFetchingArgs={"cachingData"}
+        concurrentArgs={concurrencyFetchArg}
+        responseTime={runTimeArgs}
         url={fetchUrl}
       />
       <Divider/>

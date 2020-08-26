@@ -19,6 +19,8 @@ const getAllTagsDataConcurrently = async (tagsArg) => {
   let result = [];
   let error = false;
 
+  console.log("Concurrent");
+
   /** Using Async library Es7 mapLimit function to make parallel data fetching requests to hatchways api */
   const getData = () => async.mapLimit(tagsArg, 20, async function (eachTag) {
 
@@ -53,6 +55,7 @@ const getAllTagsDataConcurrently = async (tagsArg) => {
 /** Get all the desired tags from either the Cache or HTTP server (datasource) */
 const getAllTagsDataNotConcurrently = async (tagsArg) => {
   let result = [];
+  console.log("Not Concurrent")
 
   /* Get Data for all listed the tags */
   for (const eachTag of tagsArg) {

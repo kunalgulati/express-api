@@ -36,6 +36,7 @@ router.get('/api/posts', async (req, res) => {
 
   /* Fetch all data */
   let result = [];
+  console.log(`Value: ${concurrentProcessParam}`)
   if(concurrentProcessParam == "true"){ result = await helperPost.getAllTagsDataConcurrently(tagsParam)}
   else {result = await helperPost.getAllTagsDataNotConcurrently(tagsParam);}
   
