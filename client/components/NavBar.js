@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   rootBar :{
     backgroundColor: "transparent",
-    color: "#0336FF",
+    color: "primary",
     alignItems: 'center',
 
   },
@@ -77,7 +77,9 @@ export default function ButtonAppBar() {
             <LinkedInIcon /> 
           </IconButton>
         </Toolbar>
+        <p>Loading data for the First Time might take a bit longer because the Heroku server (API datasource) needs to be woken up. </p>
       </AppBar>
+      
     </div>
     </React.Fragment>
   );
