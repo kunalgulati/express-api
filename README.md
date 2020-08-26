@@ -1,8 +1,8 @@
 # Kunal Gulati Portfolio
 I wanted to practice building a quick API which performs concurrent data **fetching** and **caching** to reduce the data retrieval time. So, I built an API for retrieving data from a self-build API server which is hosted on heroku. 
 
-Learn More about project structure, dataflow, & etc @ [https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b](https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b)
-See How Concurrent Fetching App works @ [https://api-seven-gray.vercel.app/](https://api-seven-gray.vercel.app/)
+* Learn More about project structure, dataflow, & etc @ [https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b](https://medium.com/@kunalgulati98/concurrent-api-fetching-f1131c0a916b)
+* See How Concurrent Fetching App works @ [https://api-seven-gray.vercel.app/](https://api-seven-gray.vercel.app/)
 
 ## Getting Started
 After cloning the Porject run the following commands 
